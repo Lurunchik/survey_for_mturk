@@ -3,8 +3,7 @@ from otree.api import (
     Currency as c, currency_range
 )
 
-
-author = 'Your name here'
+author = 'lurunchik_chomechome'
 
 doc = """
 Your app description
@@ -12,7 +11,7 @@ Your app description
 
 
 class Constants(BaseConstants):
-    name_in_url = 'my_simple_survey'
+    name_in_url = 'humor_evaluation'
     players_per_group = None
     num_rounds = 1
 
@@ -27,4 +26,19 @@ class Group(BaseGroup):
 
 class Player(BasePlayer):
     name = models.CharField()
-    age = models.PositiveIntegerField()
+    gender = models.PositiveIntegerField(
+        choices=[
+            [1, 'Male'],
+            [2, 'Female'],
+            [3, 'Prefer not to disclose'],
+        ]
+    )
+    age_group = models.PositiveIntegerField(
+        choices=[
+            [1, '18-30'],
+            [2, '31-40'],
+            [3, '41-50'],
+            [4, '51-60'],
+            [5, '61+'],
+        ], help_text='age group'
+    )
