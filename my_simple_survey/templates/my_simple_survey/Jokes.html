@@ -1,0 +1,15 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree_tags %}
+
+{% block title %}
+    Please, evaluate following jokes
+{% endblock %}
+
+{% block content %}
+
+    {% for joke in data.jokes %}
+1
+    {% endfor %}
+
+{% next_button %}
+{% endblock %}

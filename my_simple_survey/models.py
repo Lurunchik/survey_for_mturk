@@ -3,6 +3,9 @@ from otree.api import (
     Currency as c, currency_range
 )
 
+from my_simple_survey.fields import get_agreement_field, get_joke_field
+from my_simple_survey.jokes import JOKES
+
 author = 'lurunchik_chomechome'
 
 doc = """
@@ -30,7 +33,8 @@ class Player(BasePlayer):
             [1, 'Male'],
             [2, 'Female'],
             [3, 'Prefer not to disclose'],
-        ]
+        ],
+        widget=widgets.RadioSelect()
     )
     age_group = models.PositiveIntegerField(
         choices=[
@@ -39,7 +43,8 @@ class Player(BasePlayer):
             [3, '41-50'],
             [4, '51-60'],
             [5, '61+'],
-        ], help_text='age group'
+        ],
+        widget=widgets.RadioSelect()
     )
     english_level = models.PositiveIntegerField(
         choices=[
@@ -51,47 +56,16 @@ class Player(BasePlayer):
         ]
     )
 
+    laugh = get_agreement_field()
+    pun = get_agreement_field()
+    extraverted = get_agreement_field()
+    critical = get_agreement_field()
+    dependable = get_agreement_field()
+    anxious = get_agreement_field()
+    complex = get_agreement_field()
+    warm = get_agreement_field()
+    disorganized = get_agreement_field()
+    calm = get_agreement_field()
+    conventional = get_agreement_field()
 
-class HumanHumorSense(BasePlayer):
-    _AGREEMENT_CHOICES = [
-        [1, 'Disagree strongly'],
-        [2, 'Disagree moderately'],
-        [3, 'Disagree a little'],
-        [4, 'Neither agree nor disagree'],
-        [5, 'Agree a little'],
-        [6, 'Agree moderately'],
-        [7, 'Agree strongly']
-    ]
-    laugh = models.PositiveIntegerField(
-        choices=_AGREEMENT_CHOICES
-    )
-    pun = models.PositiveIntegerField(
-        choices=_AGREEMENT_CHOICES
-    )
-    extraverted = models.PositiveIntegerField(
-        choices=_AGREEMENT_CHOICES
-    )
-    critical = models.PositiveIntegerField(
-        choices=_AGREEMENT_CHOICES
-    )
-    dependable = models.PositiveIntegerField(
-        choices=_AGREEMENT_CHOICES
-    )
-    anxious = models.PositiveIntegerField(
-        choices=_AGREEMENT_CHOICES
-    )
-    complex = models.PositiveIntegerField(
-        choices=_AGREEMENT_CHOICES
-    )
-    warm = models.PositiveIntegerField(
-        choices=_AGREEMENT_CHOICES
-    )
-    disorganized = models.PositiveIntegerField(
-        choices=_AGREEMENT_CHOICES
-    )
-    calm = models.PositiveIntegerField(
-        choices=_AGREEMENT_CHOICES
-    )
-    conventional = models.PositiveIntegerField(
-        choices=_AGREEMENT_CHOICES
-    )
+    joke_1 = get_joke_field()
