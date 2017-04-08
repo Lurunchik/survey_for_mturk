@@ -20,8 +20,11 @@ if __name__ == "__main__":
     {% block content %}
 
     """ + jokes + """
-    {% endblock %}
 
+    {% next_button %}
+
+
+    {% endblock %}
 
     """
 

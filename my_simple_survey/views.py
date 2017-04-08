@@ -47,8 +47,8 @@ class Results(Page):
 
 
 page_sequence = [
+    GeneralInformation,
     Joke,
-    # GeneralInformation,
-    # SenseOfHumor,
+    SenseOfHumor,
     Results
 ]
