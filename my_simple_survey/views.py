@@ -1,10 +1,6 @@
-from otree.api import Currency as c, currency_range
-from otree.common import safe_json
-
-from my_simple_survey.jokes import JOKES
+from my_simple_survey.data.jokes import JOKES
 from . import models
-from ._builtin import Page, WaitPage
-from .models import Constants
+from ._builtin import Page
 
 
 class GeneralInformation(Page):
@@ -25,10 +21,7 @@ class BaseJoke(Page):
 
 
 class Joke(BaseJoke):
-    form_fields = ['joke_1']
-
-    def vars_for_template(self):
-        return {'joke': JOKES[0]}
+    form_fields = ['joke_{}'.format(i) for i in range(1, len(JOKES) + 1)]
 
 
 def get_joke_page(joke_id: int):
@@ -40,11 +33,13 @@ def get_joke_page(joke_id: int):
                 'field': getattr(models.Player, form_field)
                 }
 
-    return type('Joke', (BaseJoke,),
-                {'vars_for_template': set_vars_for_template,
-                 'form_fields': [form_field]
-                 }
-                )
+    return type(
+        'Joke', (BaseJoke,),
+        {
+            'vars_for_template': set_vars_for_template,
+            'form_fields': [form_field]
+        }
+    )
 
 
 class Results(Page):
@@ -52,8 +47,7 @@ class Results(Page):
 
 
 page_sequence = [
-    get_joke_page(1),
-    get_joke_page(2),
+    Joke,
     # GeneralInformation,
     # SenseOfHumor,
     Results

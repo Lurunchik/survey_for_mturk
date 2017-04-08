@@ -1,10 +1,9 @@
 from otree.api import (
-    models, widgets, BaseConstants, BaseSubsession, BaseGroup, BasePlayer,
-    Currency as c, currency_range
+    models, widgets, BaseConstants, BaseSubsession, BaseGroup, BasePlayer
 )
 
+from my_simple_survey.data.jokes import JOKES
 from my_simple_survey.fields import get_agreement_field, get_joke_field
-from my_simple_survey.jokes import JOKES
 
 author = 'lurunchik_chomechome'
 
@@ -25,6 +24,7 @@ class Subsession(BaseSubsession):
 
 class Group(BaseGroup):
     pass
+
 
 
 class Player(BasePlayer):
@@ -71,4 +71,30 @@ class Player(BasePlayer):
     joke_1 = get_joke_field()
     joke_2 = get_joke_field()
     joke_3 = get_joke_field()
-
+    joke_4 = get_joke_field()
+    joke_5 = get_joke_field()
+    joke_6 = get_joke_field()
+    joke_7 = get_joke_field()
+    joke_8 = get_joke_field()
+    joke_9 = get_joke_field()
+    joke_10 = get_joke_field()
+    joke_11 = get_joke_field()
+    joke_12 = get_joke_field()
+    joke_13 = get_joke_field()
+    joke_14 = get_joke_field()
+    joke_15 = get_joke_field()
+    joke_16 = get_joke_field()
+    joke_17 = get_joke_field()
+    joke_18 = get_joke_field()
+    joke_19 = get_joke_field()
+    joke_20 = get_joke_field()
+    joke_21 = get_joke_field()
+    joke_22 = get_joke_field()
+    joke_23 = get_joke_field()
+    joke_24 = get_joke_field()
+    joke_25 = get_joke_field()
+    joke_26 = get_joke_field()
+    joke_27 = get_joke_field()
+    joke_28 = get_joke_field()
+    joke_29 = get_joke_field()
+    joke_30 = get_joke_field()
