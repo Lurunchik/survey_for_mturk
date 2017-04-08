@@ -2,15 +2,15 @@
 {% load staticfiles otree_tags %}
 
 {% block title %}
-    Enter your information
+Please, evaluate following joke
 {% endblock %}
 
 {% block content %}
 
-    {% formfield player.gender with label="My gender is:" %}
-    {% formfield player.age_group with label="My age group is:" %}
-    {% formfield player.english_level with label="My English proficiency is:" %}
+<p><strong>Question:</strong> {{ joke.question }} </p>
+<p><strong>Answer:</strong> {{ joke.answer }} </p>
 
-    {% next_button %}
+{% formfield {{field}} with label="Fun" %}
 
+{% next_button %}
 {% endblock %}

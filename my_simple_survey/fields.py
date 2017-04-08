@@ -18,5 +18,7 @@ def get_agreement_field():
 
 def get_joke_field():
     return models.PositiveIntegerField(
-        widget=widgets.SliderInput(attrs={'step': '0.01'})
+        min=0,
+        max=5,
+        widget=widgets.SliderInput(attrs={'step': '1'}, show_value=False),
     )

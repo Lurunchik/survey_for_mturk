@@ -69,3 +69,6 @@ class Player(BasePlayer):
     conventional = get_agreement_field()
 
     joke_1 = get_joke_field()
+    joke_2 = get_joke_field()
+    joke_3 = get_joke_field()
+

@@ -19,12 +19,32 @@ class SenseOfHumor(Page):
                    'conventional']
 
 
-class Jokes(Page):
+class BaseJoke(Page):
     form_model = models.Player
+    template_name = 'my_simple_survey/Joke.html'
+
+
+class Joke(BaseJoke):
     form_fields = ['joke_1']
 
     def vars_for_template(self):
-        return {'jokes': safe_json(JOKES)}
+        return {'joke': JOKES[0]}
+
+
+def get_joke_page(joke_id: int):
+    assert joke_id < len(JOKES), '{} is wrong joke id'.format(joke_id)
+    form_field = 'joke_{}'.format(joke_id)
+
+    def set_vars_for_template():
+        return {'joke': JOKES[joke_id],
+                'field': getattr(models.Player, form_field)
+                }
+
+    return type('Joke', (BaseJoke,),
+                {'vars_for_template': set_vars_for_template,
+                 'form_fields': [form_field]
+                 }
+                )
 
 
 class Results(Page):
@@ -32,7 +52,8 @@ class Results(Page):
 
 
 page_sequence = [
-    Jokes,
+    get_joke_page(1),
+    get_joke_page(2),
     # GeneralInformation,
     # SenseOfHumor,
     Results
