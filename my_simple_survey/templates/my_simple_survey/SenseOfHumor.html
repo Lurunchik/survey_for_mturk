@@ -1,0 +1,24 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree_tags %}
+
+{% block title %}
+    Do you agree with following statements?
+{% endblock %}
+
+{% block content %}
+
+    {% formfield player.laugh with label="I laugh often; it is easy to make me laugh." %}
+    {% formfield player.pun with label="I usually pun, tell jokes or funny anecdotes in a social situation." %}
+    {% formfield player.extraverted with label="I see myself as: *extraverted, enthusiastic*" %}
+    {% formfield player.critical with label="I see myself as: *critical, quarrelsome*" %}
+    {% formfield player.dependable with label="I see myself as: *dependable, self-disciplined*" %}
+    {% formfield player.anxious with label="I see myself as: *anxious, easily upset*" %}
+    {% formfield player.complex with label="I see myself as: *open to new experiences, complex*" %}
+    {% formfield player.warm with label="I see myself as: *sympathetic, warm*" %}
+    {% formfield player.disorganized with label="I see myself as: *disorganized, careless*" %}
+    {% formfield player.calm with label="I see myself as: *calm, emotionally stable*" %}
+    {% formfield player.conventional with label="I see myself as: *conventional, uncreative*" %}
+
+    {% next_button %}
+
+{% endblock %}
