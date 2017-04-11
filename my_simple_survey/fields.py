@@ -11,14 +11,18 @@ def get_agreement_field():
             [5, 'Agree a little'],
             [6, 'Agree moderately'],
             [7, 'Agree strongly']
-        ],
-        widget=widgets.RadioSelectHorizontal()
+        ]
     )
 
 
 def get_joke_field():
-    return models.PositiveIntegerField(
+    return models.PositiveIntegerField(choices=[
+        [1, '😞 not funny at all '],
+        [2, '😔 can be better'],
+        [3, '😊 funny'],
+        [4, '😆 hilarious']
+    ],
         min=0,
         max=5,
-        widget=widgets.SliderInput(attrs={'step': '1'}, show_value=False),
+        widget=widgets.RadioSelectHorizontal(),
     )
