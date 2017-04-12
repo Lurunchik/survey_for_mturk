@@ -110,7 +110,7 @@ SESSION_CONFIGS = [
     {
         'name': 'my_simple_survey',
         'display_name': "What type of sence of humor_survey do you have?",
-        'num_demo_participants': 3,
+        'num_demo_participants': 30,
         'app_sequence': ['my_simple_survey'],
     },
     # other session configs go here ...
