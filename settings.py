@@ -47,6 +47,7 @@ DATABASES = {
 
 AUTH_LEVEL = environ.get('OTREE_AUTH_LEVEL')
 
+
 # setting for integration with AWS Mturk
 AWS_ACCESS_KEY_ID = environ.get('AWS_ACCESS_KEY_ID')
 AWS_SECRET_ACCESS_KEY = environ.get('AWS_SECRET_ACCESS_KEY')
