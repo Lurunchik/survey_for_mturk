@@ -9,9 +9,9 @@ def chunks(l, n):
 
 def get_html(jokes, start_id):
     jokes_html = '\n\n'.join(
-        [
-            """
-            <p><strong>Question: </strong>""" + j['question'] + """</p>
+[
+"""
+<p><strong>Question: </strong>""" + j['question'] + """</p>
 <p><strong>Answer: </strong>""" + j['answer'] + """</p>
 
 {% formfield player.joke_""" + str(i) + """ with label="" %}
