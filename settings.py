@@ -109,7 +109,7 @@ SESSION_CONFIG_DEFAULTS = {
 SESSION_CONFIGS = [
     {
         'name': 'my_simple_survey',
-        'display_name': "What type of sence of humor_survey do you have?",
+        'display_name': "What type of sense of humor do you have?",
         'num_demo_participants': 30,
         'app_sequence': ['my_simple_survey'],
     },
