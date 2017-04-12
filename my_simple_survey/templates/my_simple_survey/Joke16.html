@@ -1,0 +1,37 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree_tags %}
+
+{% block title %}
+Please, evaluate the following jokes
+{% endblock %}
+
+{% block content %}
+
+
+<p><strong>Question: </strong>Does evolution being a theory make it subjective?</p>
+<p><strong>Answer: </strong>There is no theory of evolution, just a list of creatures Chuck Norris allows to live.</p>
+
+{% formfield player.joke_16 with label="" %}
+<br>
+
+
+
+<p><strong>Question: </strong>Who said, "Have you seen this before"?</p>
+<p><strong>Answer: </strong>Boy asks his Granny, “Have you seen my pills labelled 'LSD'?” Granny said, “Nevermind the pills, have you seen the dragon in the kitchen?”</p>
+
+{% formfield player.joke_17 with label="" %}
+<br>
+
+
+
+<p><strong>Question: </strong>'answer're you a good person?</p>
+<p><strong>Answer: </strong>I know I'm a good person because I stay miserable to make my ex's happy.</p>
+
+{% formfield player.joke_18 with label="" %}
+<br>
+
+
+{% next_button %}
+
+
+{% endblock %}

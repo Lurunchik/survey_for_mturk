@@ -1,3 +1,5 @@
+JOKES_COUNT_ON_PAGE = 3
+
 JOKES = [
     {
         'question': "What's the difference between the government and the Mafia?",

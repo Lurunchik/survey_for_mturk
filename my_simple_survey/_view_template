@@ -1,0 +1,19 @@
+from . import models
+from ._builtin import Page
+
+
+class GeneralInformation(Page):
+    form_model = models.Player
+    form_fields = ['gender', 'age_group', 'english_level']
+
+
+class SenseOfHumor(Page):
+    form_model = models.Player
+    form_fields = ['laugh', 'pun', 'extraverted', 'critical', 'dependable',
+                   'anxious', 'complex', 'warm', 'disorganized', 'calm',
+                   'conventional']
+
+
+class Results(Page):
+    pass
+

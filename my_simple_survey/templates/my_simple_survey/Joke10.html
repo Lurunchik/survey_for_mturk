@@ -1,0 +1,37 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree_tags %}
+
+{% block title %}
+Please, evaluate the following jokes
+{% endblock %}
+
+{% block content %}
+
+
+<p><strong>Question: </strong>What is the meaning of life?</p>
+<p><strong>Answer: </strong> 'answer'll evidence to date suggests it’s chocolate.</p>
+
+{% formfield player.joke_10 with label="" %}
+<br>
+
+
+
+<p><strong>Question: </strong>Is there anything better than caramel covered sardines?</p>
+<p><strong>Answer: </strong>FREE caramel covered sardines.</p>
+
+{% formfield player.joke_11 with label="" %}
+<br>
+
+
+
+<p><strong>Question: </strong> 'answer'm I the coolest person in the world?</p>
+<p><strong>Answer: </strong>Nope. That person lives in 'answer'ntarctica.</p>
+
+{% formfield player.joke_12 with label="" %}
+<br>
+
+
+{% next_button %}
+
+
+{% endblock %}

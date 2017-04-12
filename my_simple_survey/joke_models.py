@@ -1,21 +1,6 @@
+
 from . import models
 from ._builtin import Page
-
-
-class GeneralInformation(Page):
-    form_model = models.Player
-    form_fields = ['gender', 'age_group', 'english_level']
-
-
-class SenseOfHumor(Page):
-    form_model = models.Player
-    form_fields = ['laugh', 'pun', 'extraverted', 'critical', 'dependable',
-                   'anxious', 'complex', 'warm', 'disorganized', 'calm',
-                   'conventional']
-
-
-class Results(Page):
-    pass
 
 
 class Joke1(Page):
@@ -76,11 +61,3 @@ class Joke28(Page):
     form_model = models.Player
     form_fields = ['joke_28', 'joke_29', 'joke_30']
     template_name = 'my_simple_survey/Joke28.html'
-
-
-page_sequence = [
-    GeneralInformation,
-    Joke1, Joke4, Joke7, Joke10, Joke13, Joke16, Joke19, Joke22, Joke25, Joke28,
-    SenseOfHumor,
-    Results
-]

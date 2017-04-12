@@ -1,0 +1,37 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree_tags %}
+
+{% block title %}
+Please, evaluate the following jokes
+{% endblock %}
+
+{% block content %}
+
+
+<p><strong>Question: </strong>What do you call a sheep with no head and no legs?</p>
+<p><strong>Answer: </strong>A cloud!</p>
+
+{% formfield player.joke_28 with label="" %}
+<br>
+
+
+
+<p><strong>Question: </strong>Why are most silicon valley people so awful?</p>
+<p><strong>Answer: </strong>Because technology was originally given to us by the devil.</p>
+
+{% formfield player.joke_29 with label="" %}
+<br>
+
+
+
+<p><strong>Question: </strong>How does Batman’s mum tell him dinner’s ready?</p>
+<p><strong>Answer: </strong>His mum’s dead, you monster.</p>
+
+{% formfield player.joke_30 with label="" %}
+<br>
+
+
+{% next_button %}
+
+
+{% endblock %}

@@ -1,0 +1,37 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree_tags %}
+
+{% block title %}
+Please, evaluate the following jokes
+{% endblock %}
+
+{% block content %}
+
+
+<p><strong>Question: </strong>What is the difference between greeting a Queen and greeting the President of the United States?</p>
+<p><strong>Answer: </strong>You only have to get on one knee to greet the queen.</p>
+
+{% formfield player.joke_7 with label="" %}
+<br>
+
+
+
+<p><strong>Question: </strong>What is the meaning of life?</p>
+<p><strong>Answer: </strong>I Kant answer that. Ha, ha.</p>
+
+{% formfield player.joke_8 with label="" %}
+<br>
+
+
+
+<p><strong>Question: </strong>Why did the chicken cross the road?</p>
+<p><strong>Answer: </strong>I am not perspicacious about the peregrinations of poultry.</p>
+
+{% formfield player.joke_9 with label="" %}
+<br>
+
+
+{% next_button %}
+
+
+{% endblock %}
