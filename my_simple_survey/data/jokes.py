@@ -6,7 +6,7 @@ JOKES = [
         'answer': "One of them is organized."
     },
     {
-        'question': "What is the 'answer'ustralian word for a boomerang that won't come back?",
+        'question': "What is the Australian word for a boomerang that won't come back?",
         'answer': "A stick."
     },
     {
@@ -39,7 +39,7 @@ JOKES = [
     },
     {
         'question': "What is the meaning of life?",
-        'answer': " 'answer'll evidence to date suggests it’s chocolate."
+        'answer': " 'All evidence to date suggests it’s chocolate."
     },
     {
         'question': "Is there anything better than caramel covered sardines?",
@@ -47,8 +47,8 @@ JOKES = [
     },
 
     {
-        'question': " 'answer'm I the coolest person in the world?",
-        'answer': "Nope. That person lives in 'answer'ntarctica."
+        'question': " Am I the coolest person in the world?",
+        'answer': "Nope. That person lives in Antarctica."
     },
     {
         'question': "Can you die by taco?",
@@ -71,7 +71,7 @@ JOKES = [
         'answer': "Boy asks his Granny, “Have you seen my pills labelled 'LSD'?” Granny said, “Nevermind the pills, have you seen the dragon in the kitchen?”"
     },
     {
-        'question': "'answer're you a good person?",
+        'question': "Are you a good person?",
         'answer': "I know I'm a good person because I stay miserable to make my ex's happy."
     },
     {
@@ -79,7 +79,7 @@ JOKES = [
         'answer': " Lots of things, in terms of temperature, but if you mean the elusive quality of dopeness, why, nothing. "
     },
     {
-        'question': "'answer're you a good person?",
+        'question': "Are you a good person?",
         'answer': "I know I'm only an okay person because I always hope someone notices me doing good deeds."
     },
     {
