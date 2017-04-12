@@ -47,6 +47,7 @@ DATABASES = {
 
 AUTH_LEVEL = environ.get('OTREE_AUTH_LEVEL')
 
+
 # setting for integration with AWS Mturk
 AWS_ACCESS_KEY_ID = environ.get('AWS_ACCESS_KEY_ID')
 AWS_SECRET_ACCESS_KEY = environ.get('AWS_SECRET_ACCESS_KEY')
@@ -109,7 +110,7 @@ SESSION_CONFIG_DEFAULTS = {
 SESSION_CONFIGS = [
     {
         'name': 'my_simple_survey',
-        'display_name': "What type of sense of humor_survey do you have?",
+        'display_name': "What type of sense of humor do you have?",
         'num_demo_participants': 30,
         'app_sequence': ['my_simple_survey'],
     },
