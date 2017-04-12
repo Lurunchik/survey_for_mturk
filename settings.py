@@ -78,8 +78,8 @@ oTree games
 
 mturk_hit_settings = {
     'keywords': ['easy', 'bonus', 'choice', 'study'],
-    'title': 'Title for your experiment',
-    'description': 'Description for your experiment',
+    'title': 'Humor evaluation',
+    'description': 'This HIT is an academic experiment on humor evaluation.',
     'frame_height': 500,
     'preview_template': 'global/MTurkPreview.html',
     'minutes_allotted_per_assignment': 60,
