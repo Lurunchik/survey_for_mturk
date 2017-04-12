@@ -39,7 +39,7 @@ JOKES = [
     },
     {
         'question': "What is the meaning of life?",
-        'answer': " 'All evidence to date suggests it’s chocolate."
+        'answer': "All evidence to date suggests it’s chocolate."
     },
     {
         'question': "Is there anything better than caramel covered sardines?",
@@ -47,7 +47,7 @@ JOKES = [
     },
 
     {
-        'question': " Am I the coolest person in the world?",
+        'question': "Am I the coolest person in the world?",
         'answer': "Nope. That person lives in Antarctica."
     },
     {
@@ -60,7 +60,7 @@ JOKES = [
     },
     {
         'question': "What happens if you get scared half to death twice?",
-        'answer': "  A half of a half is a quarter, so you would still be alive!"
+        'answer': "A half of a half is a quarter, so you would still be alive!"
     },
     {
         'question': "Does evolution being a theory make it subjective?",
