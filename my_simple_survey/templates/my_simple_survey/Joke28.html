@@ -1,9 +1,8 @@
 {% extends "global/Page.html" %}
-{% load staticfiles otree_tags %}
+                {% load staticfiles otree_tags %}
 
-{% block content %}
-<h3>Please, evaluate the following jokes </h3>
-<p><strong>Question: </strong>What do you call a sheep with no head and no legs?</p>
+                {% block content %}
+                <h3>Page 10/10. Please, evaluate the following jokes: </h3> <p><strong>Question: </strong>What do you call a sheep with no head and no legs?</p>
 <p><strong>Answer: </strong>A cloud!</p>
 {% formfield player.joke_28 with label="" %}
 <br>
@@ -20,7 +19,7 @@
 {% formfield player.joke_30 with label="" %}
 <br>
 
-{% next_button %}
+                {% next_button %}
 
-
-{% endblock %}
+                {% endblock %}
+            

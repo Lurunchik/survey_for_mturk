@@ -1,9 +1,8 @@
 {% extends "global/Page.html" %}
-{% load staticfiles otree_tags %}
+                {% load staticfiles otree_tags %}
 
-{% block content %}
-<h3>Please, evaluate the following jokes </h3>
-<p><strong>Question: </strong>How many “friend zoned” guys does it take to change a lightbulb?</p>
+                {% block content %}
+                <h3>Page 8/10. Please, evaluate the following jokes: </h3> <p><strong>Question: </strong>How many “friend zoned” guys does it take to change a lightbulb?</p>
 <p><strong>Answer: </strong>None. They just compliment it and get mad when it won't screw.</p>
 {% formfield player.joke_22 with label="" %}
 <br>
@@ -20,7 +19,7 @@
 {% formfield player.joke_24 with label="" %}
 <br>
 
-{% next_button %}
+                {% next_button %}
 
-
-{% endblock %}
+                {% endblock %}
+            

@@ -1,9 +1,8 @@
 {% extends "global/Page.html" %}
-{% load staticfiles otree_tags %}
+                {% load staticfiles otree_tags %}
 
-{% block content %}
-<h3>Please, evaluate the following jokes </h3>
-<p><strong>Question: </strong>What is the difference between greeting a Queen and greeting the President of the United States?</p>
+                {% block content %}
+                <h3>Page 3/10. Please, evaluate the following jokes: </h3> <p><strong>Question: </strong>What is the difference between greeting a Queen and greeting the President of the United States?</p>
 <p><strong>Answer: </strong>You only have to get on one knee to greet the queen.</p>
 {% formfield player.joke_7 with label="" %}
 <br>
@@ -20,7 +19,7 @@
 {% formfield player.joke_9 with label="" %}
 <br>
 
-{% next_button %}
+                {% next_button %}
 
-
-{% endblock %}
+                {% endblock %}
+            

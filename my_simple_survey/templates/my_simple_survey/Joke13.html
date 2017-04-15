@@ -1,9 +1,8 @@
 {% extends "global/Page.html" %}
-{% load staticfiles otree_tags %}
+                {% load staticfiles otree_tags %}
 
-{% block content %}
-<h3>Please, evaluate the following jokes </h3>
-<p><strong>Question: </strong>Can you die by taco?</p>
+                {% block content %}
+                <h3>Page 5/10. Please, evaluate the following jokes: </h3> <p><strong>Question: </strong>Can you die by taco?</p>
 <p><strong>Answer: </strong>Not immediately. It is kind of a slow, drawn out death over years.</p>
 {% formfield player.joke_13 with label="" %}
 <br>
@@ -20,7 +19,7 @@
 {% formfield player.joke_15 with label="" %}
 <br>
 
-{% next_button %}
+                {% next_button %}
 
-
-{% endblock %}
+                {% endblock %}
+            

@@ -1,9 +1,8 @@
 {% extends "global/Page.html" %}
-{% load staticfiles otree_tags %}
+                {% load staticfiles otree_tags %}
 
-{% block content %}
-<h3>Please, evaluate the following jokes </h3>
-<p><strong>Question: </strong>What is the meaning of life?</p>
+                {% block content %}
+                <h3>Page 4/10. Please, evaluate the following jokes: </h3> <p><strong>Question: </strong>What is the meaning of life?</p>
 <p><strong>Answer: </strong>All evidence to date suggests it’s chocolate.</p>
 {% formfield player.joke_10 with label="" %}
 <br>
@@ -20,7 +19,7 @@
 {% formfield player.joke_12 with label="" %}
 <br>
 
-{% next_button %}
+                {% next_button %}
 
-
-{% endblock %}
+                {% endblock %}
+            
