@@ -1,17 +1,12 @@
 {% extends "otree/FormPage.html" %}
 {% load staticfiles otree_tags %}
-
-{% comment %}
-    this file used to be called Base.html
-    If your app's templates contain this line:
-    {% extends "global/Base.html" %}
-    You should change it to:
-    {% extends "global/Page.html" %}
-{% endcomment %}
-
-
-{% block global_styles  %}
-{% endblock %}
-
 {% block global_scripts  %}
+<style type="text/css">
+    .page-header {
+        padding-top: 0;
+        padding-bottom: 0;
+        margin: 0;
+        border-bottom: none;
+    }
+</style>
 {% endblock %}

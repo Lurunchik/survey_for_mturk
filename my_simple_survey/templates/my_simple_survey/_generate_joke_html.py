@@ -10,10 +10,8 @@ def chunks(l, n):
 def get_html(jokes, start_id):
     jokes_html = '\n\n'.join(
 [
-"""
-<p><strong>Question: </strong>""" + j['question'] + """</p>
+"""<p><strong>Question: </strong>""" + j['question'] + """</p>
 <p><strong>Answer: </strong>""" + j['answer'] + """</p>
-
 {% formfield player.joke_""" + str(i) + """ with label="" %}
 <br>
 """ for i, j in enumerate(jokes, start=start_id)
@@ -22,14 +20,9 @@ def get_html(jokes, start_id):
     html = """{% extends "global/Page.html" %}
 {% load staticfiles otree_tags %}
 
-{% block title %}
-Please, evaluate the following jokes
-{% endblock %}
-
 {% block content %}
-
+<h3>Please, evaluate the following jokes </h3>
 """ + jokes_html + """
-
 {% next_button %}
 
 

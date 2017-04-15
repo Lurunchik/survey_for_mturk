@@ -1,35 +1,24 @@
 {% extends "global/Page.html" %}
 {% load staticfiles otree_tags %}
 
-{% block title %}
-Please, evaluate the following jokes
-{% endblock %}
-
 {% block content %}
-
-
+<h3>Please, evaluate the following jokes </h3>
 <p><strong>Question: </strong>What's cooler than being cool?</p>
 <p><strong>Answer: </strong> Lots of things, in terms of temperature, but if you mean the elusive quality of dopeness, why, nothing. </p>
-
 {% formfield player.joke_19 with label="" %}
 <br>
 
 
-
 <p><strong>Question: </strong>Are you a good person?</p>
 <p><strong>Answer: </strong>I know I'm only an okay person because I always hope someone notices me doing good deeds.</p>
-
 {% formfield player.joke_20 with label="" %}
 <br>
 
 
-
 <p><strong>Question: </strong> Why do scuba divers fall backwards off of the boat?</p>
 <p><strong>Answer: </strong> Because if they fell forward, they’d still be in the boat. </p>
-
 {% formfield player.joke_21 with label="" %}
 <br>
-
 
 {% next_button %}
 

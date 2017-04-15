@@ -81,6 +81,5 @@ class Joke28(Page):
 page_sequence = [
     GeneralInformation,
     Joke1, Joke4, Joke7, Joke10, Joke13, Joke16, Joke19, Joke22, Joke25, Joke28,
-    SenseOfHumor,
-    Results
+    SenseOfHumor
 ]

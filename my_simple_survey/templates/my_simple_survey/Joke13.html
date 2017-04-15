@@ -1,35 +1,24 @@
 {% extends "global/Page.html" %}
 {% load staticfiles otree_tags %}
 
-{% block title %}
-Please, evaluate the following jokes
-{% endblock %}
-
 {% block content %}
-
-
+<h3>Please, evaluate the following jokes </h3>
 <p><strong>Question: </strong>Can you die by taco?</p>
 <p><strong>Answer: </strong>Not immediately. It is kind of a slow, drawn out death over years.</p>
-
 {% formfield player.joke_13 with label="" %}
 <br>
 
 
-
 <p><strong>Question: </strong>How can a person die hard?</p>
 <p><strong>Answer: </strong>From assault and battery.</p>
-
 {% formfield player.joke_14 with label="" %}
 <br>
 
 
-
 <p><strong>Question: </strong>What happens if you get scared half to death twice?</p>
-<p><strong>Answer: </strong>  A half of a half is a quarter, so you would still be alive!</p>
-
+<p><strong>Answer: </strong>A half of a half is a quarter, so you would still be alive!</p>
 {% formfield player.joke_15 with label="" %}
 <br>
-
 
 {% next_button %}
 

@@ -1,35 +1,24 @@
 {% extends "global/Page.html" %}
 {% load staticfiles otree_tags %}
 
-{% block title %}
-Please, evaluate the following jokes
-{% endblock %}
-
 {% block content %}
-
-
+<h3>Please, evaluate the following jokes </h3>
 <p><strong>Question: </strong>How many “friend zoned” guys does it take to change a lightbulb?</p>
 <p><strong>Answer: </strong>None. They just compliment it and get mad when it won't screw.</p>
-
 {% formfield player.joke_22 with label="" %}
 <br>
 
 
-
 <p><strong>Question: </strong> Why are gay men so well dressed?</p>
 <p><strong>Answer: </strong> They didn 't spend all that time in the closet doing nothing.</p>
-
 {% formfield player.joke_23 with label="" %}
 <br>
 
 
-
 <p><strong>Question: </strong>Why did 10 die</p>
 <p><strong>Answer: </strong>He was in the middle of 9/11.</p>
-
 {% formfield player.joke_24 with label="" %}
 <br>
-
 
 {% next_button %}
 

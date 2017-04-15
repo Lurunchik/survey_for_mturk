@@ -1,35 +1,24 @@
 {% extends "global/Page.html" %}
 {% load staticfiles otree_tags %}
 
-{% block title %}
-Please, evaluate the following jokes
-{% endblock %}
-
 {% block content %}
-
-
+<h3>Please, evaluate the following jokes </h3>
 <p><strong>Question: </strong>What do sprinters eat before a race?</p>
 <p><strong>Answer: </strong>Nothing, they fast.</p>
-
 {% formfield player.joke_25 with label="" %}
 <br>
 
 
-
 <p><strong>Question: </strong>Does deep frying a turkey really "lock in juiciness"?</p>
 <p><strong>Answer: </strong>Human consciousness is a biochemically induced hallucination</p>
-
 {% formfield player.joke_26 with label="" %}
 <br>
 
 
-
 <p><strong>Question: </strong>How did the hipster burn his mouth?</p>
 <p><strong>Answer: </strong>He ate a cookie BEFORE they were cool!</p>
-
 {% formfield player.joke_27 with label="" %}
 <br>
-
 
 {% next_button %}
 

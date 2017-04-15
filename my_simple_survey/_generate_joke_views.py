@@ -45,8 +45,7 @@ if __name__ == "__main__":
 page_sequence = [
     GeneralInformation,
     {},
-    SenseOfHumor,
-    Results
+    SenseOfHumor
 ]
 """.format(', '.join(j.name for j in j_classes))
         file += "\n" + page_sequence

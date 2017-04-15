@@ -1,35 +1,24 @@
 {% extends "global/Page.html" %}
 {% load staticfiles otree_tags %}
 
-{% block title %}
-Please, evaluate the following jokes
-{% endblock %}
-
 {% block content %}
-
-
+<h3>Please, evaluate the following jokes </h3>
 <p><strong>Question: </strong>How many programmers does it take to change a lightbulb?</p>
 <p><strong>Answer: </strong>NONE! That's a hardware problem.</p>
-
 {% formfield player.joke_4 with label="" %}
 <br>
 
 
-
 <p><strong>Question: </strong>What is the difference between Mechanical Engineers and Civil Engineers?</p>
 <p><strong>Answer: </strong>Mechanical Engineers build weapons, Civil Engineers build targets.</p>
-
 {% formfield player.joke_5 with label="" %}
 <br>
 
 
-
 <p><strong>Question: </strong>What is the difference between George Washington, Richard Nixon, and Bill Clinton?</p>
 <p><strong>Answer: </strong>Washington couldn't tell a lie, Nixon couldn't tell the truth, and Clinton doesn't know the difference.</p>
-
 {% formfield player.joke_6 with label="" %}
 <br>
-
 
 {% next_button %}
 

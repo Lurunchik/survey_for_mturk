@@ -1,35 +1,24 @@
 {% extends "global/Page.html" %}
 {% load staticfiles otree_tags %}
 
-{% block title %}
-Please, evaluate the following jokes
-{% endblock %}
-
 {% block content %}
-
-
+<h3>Please, evaluate the following jokes </h3>
 <p><strong>Question: </strong>What's the difference between the government and the Mafia?</p>
 <p><strong>Answer: </strong>One of them is organized.</p>
-
 {% formfield player.joke_1 with label="" %}
 <br>
 
 
-
 <p><strong>Question: </strong>What is the Australian word for a boomerang that won't come back?</p>
 <p><strong>Answer: </strong>A stick.</p>
-
 {% formfield player.joke_2 with label="" %}
 <br>
 
 
-
 <p><strong>Question: </strong>What is orange and sounds like a parrot?</p>
 <p><strong>Answer: </strong>A carrot.</p>
-
 {% formfield player.joke_3 with label="" %}
 <br>
-
 
 {% next_button %}
 
