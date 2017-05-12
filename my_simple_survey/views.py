@@ -18,6 +18,10 @@ class Results(Page):
     pass
 
 
+class Preview(Page):
+    pass
+
+
 class Joke1(Page):
     form_model = models.Player
     form_fields = ['joke_1', 'joke_2', 'joke_3']
@@ -79,6 +83,7 @@ class Joke28(Page):
 
 
 page_sequence = [
+    Preview,
     GeneralInformation,
     Joke1, Joke4, Joke7, Joke10, Joke13, Joke16, Joke19, Joke22, Joke25, Joke28,
     SenseOfHumor

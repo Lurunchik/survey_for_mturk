@@ -82,7 +82,6 @@ mturk_hit_settings = {
     'title': 'Humor evaluation',
     'description': 'This HIT is an academic experiment on humor evaluation.',
     'frame_height': 500,
-    'preview_template': 'global/MTurkPreview.html',
     'minutes_allotted_per_assignment': 60,
     'expiration_hours': 7*24,  # 7 days
     # 'grant_qualification_id': 'YOUR_QUALIFICATION_ID_HERE',# to prevent retakes
@@ -114,7 +113,7 @@ SESSION_CONFIGS = [
         'num_demo_participants': 30,
         'app_sequence': ['my_simple_survey'],
     },
-    # other session configs go here ...
+
 ]
 # anything you put after the below line will override
 # oTree's default settings. Use with caution.

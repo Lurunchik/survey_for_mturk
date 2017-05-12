@@ -1,14 +1,13 @@
 {% extends "global/Page.html" %}
 {% load otree_tags %}
 
-{% block title %}Please read this before clicking "Accept"{% endblock %}
+{% block title %}INFORMATION SHEET{% endblock %}
 
 {% block content %}
-<p>
-    This HIT is an academic experiment on humor evaluation.
-</p>
 
+{% if session.mturk_num_participants == -1 %}
 <p>
+
     Thank you for your interest in the experiment of humor evaluation. Chatbots
     and mobile personal assistants are becoming popular and ubiquitous mobile
     applications. Often, developers of such applications want to make them to
@@ -21,7 +20,8 @@
 <p>
     Following this, you will be shown 30 dialog jokes, i.e. jokes consisting of a
     question (Q) and an answer (A). You are asked to rate each joke on a 4-point
-    scale: 😞 not funny at all (1), 😔 can be better (2), 😊 funny (3), 😆 hilarious
+    scale: 😞 not funny at all (1), 😔 can be better (2), 😊 funny (3), 😆
+    hilarious
     (4). Please note that the jokes were collected from the Web with minimum
     filtering, so they may be rude or contain obscene language. Towards the end
     of the experiment, you will also be asked to answer some questions about
@@ -42,4 +42,16 @@
     After completing this HIT, you will receive your reward plus a bonus payment
     that is based on how you play the experiment.
 </p>
+{% else %}
+
+<p>
+    Following this, you will be shown 30 dialog jokes, i.e. jokes consisting of a
+    question (Q) and an answer (A). You are asked to rate each joke on a 4-point
+    scale: ☹ not funny at all (1), • can be better (2), ☺ funny (3), 😃 hilarious
+    (4). Towards the end of the experiment, you will also be asked to answer some
+    questions about yourself. The whole duration of the experiment should be
+    around 10 minutes.
+</p>
+{% endif %}
+{% next_button %}
 {% endblock %}
