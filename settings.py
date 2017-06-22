@@ -84,6 +84,7 @@ mturk_hit_settings = {
     'frame_height': 500,
     'minutes_allotted_per_assignment': 60,
     'expiration_hours': 7*24,  # 7 days
+    'preview_template': 'global/MTurkPreview.html',
     # 'grant_qualification_id': 'YOUR_QUALIFICATION_ID_HERE',# to prevent retakes
     'qualification_requirements': [
         # qualification.LocaleRequirement("EqualTo", "US"),
