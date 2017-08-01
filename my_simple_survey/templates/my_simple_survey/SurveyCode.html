@@ -2,10 +2,13 @@
 {% load staticfiles otree_tags %}
 
 {% block title %}
-    Thank you for participation!!
+    Thank you for participation!
 {% endblock %}
 
 {% block content %}
-    Your survey code is {{player.secret_code}}
-    {% next_button %}
+    We thank you for your time spent taking this survey.
+    Your response has been recorded.
+
+    Your MTurk completion code is: {{player.secret_code}}
+
 {% endblock %}
