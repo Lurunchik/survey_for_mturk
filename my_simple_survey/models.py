@@ -1,3 +1,5 @@
+import random
+
 from otree.api import (
     models, widgets, BaseConstants, BaseSubsession, BaseGroup, BasePlayer
 )
@@ -55,7 +57,7 @@ class Player(BasePlayer):
             [5, 'Native'],
         ]
     )
-
+    code = models.PositiveIntegerField()
     laugh = get_agreement_field()
     pun = get_agreement_field()
     extraverted = get_agreement_field()
@@ -98,3 +100,7 @@ class Player(BasePlayer):
     joke_28 = get_joke_field()
     joke_29 = get_joke_field()
     joke_30 = get_joke_field()
+
+    def secret_code(self):
+        self.code = random.randint(1, 1000000)
+        return self.code

@@ -14,6 +14,10 @@ class SenseOfHumor(Page):
                    'conventional']
 
 
+class SurveyCode(Page):
+    form_model = models.Player
+
+
 class Results(Page):
     pass
 
@@ -86,5 +90,6 @@ page_sequence = [
     # Preview,
     GeneralInformation,
     Joke1, Joke4, Joke7, Joke10, Joke13, Joke16, Joke19, Joke22, Joke25, Joke28,
-    SenseOfHumor
+    SenseOfHumor,
+    SurveyCode,
 ]
