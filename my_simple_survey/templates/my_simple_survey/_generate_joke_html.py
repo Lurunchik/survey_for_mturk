@@ -25,7 +25,7 @@ if __name__ == "__main__":
     for i, t in enumerate(joke_chunks, start=1):
         with open('Joke{}.html'.format(start_page_num), 'wb') as f:
             content_block = """<div class="progress">
-  <div class="progress-bar" role="progressbar" style="width: {percent}%" aria-valuenow="{percent}" aria-valuemin="0" aria-valuemax="100"></div>
+  <div class="progress-bar progress-bar-striped" role="progressbar" style="width: {percent}%" aria-valuenow="{percent}" aria-valuemin="0" aria-valuemax="100"></div>
 </div>
 <h3>Page {page_num}/{page_max}. Please, evaluate the following jokes: </h3> 
             {html}""".format(
