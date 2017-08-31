@@ -10,11 +10,11 @@ def chunks(l, n):
 def get_html(jokes, start_id):
     return '\n\n'.join(
         [
-            """<p><strong>Question: </strong>""" + j['question'] + """</p>
+            """<div class="jumbotron  jumbotron-fluid"><p><strong>Question: </strong>""" + j['question'] + """</p>
 <p><strong>Answer: </strong>""" + j['answer'] + """</p>
 {% formfield player.joke_""" + str(i) + """ with label="" %}
 <br>
-""" for i, j in enumerate(jokes, start=start_id)])
+</div>""" for i, j in enumerate(jokes, start=start_id)])
 
 
 if __name__ == "__main__":
