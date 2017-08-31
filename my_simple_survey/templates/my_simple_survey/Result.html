@@ -1,0 +1,25 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree_tags %}
+
+{% block scripts %}
+<script src="https://code.highcharts.com/highcharts.js"></script>
+{% endblock %}
+
+{% block title %}
+What sense of Humor do YOU have? - Test results
+{% endblock %}
+
+{% block content %}
+<br>
+<div class="instructions well well-lg">
+
+    <h4>We thank you for your time spent taking this survey. Your response has
+        been recorded.</h4>
+    <h4>Your sense of humor matches: <b>{{player.result}}%</b> of our
+        participants</h4>
+</div>
+<p>
+    <b><em>***Keep in mind that this is NOT a medical test!***</em></b>
+</p>
+{% endblock %}
+

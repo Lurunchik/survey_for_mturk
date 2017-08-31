@@ -1,57 +1,10 @@
 {% extends "global/Page.html" %}
 {% load otree_tags %}
 
-{% block title %}INFORMATION SHEET{% endblock %}
+{% block title %}Test Your Sense of Humor{% endblock %}
 
 {% block content %}
+    {% include Constants.instructions_template %}
 
-{% if session.mturk_num_participants == -1 %}
-<p>
-
-    Thank you for your interest in the experiment on humor evaluation. Chatbots
-    and mobile personal assistants are becoming popular and ubiquitous mobile
-    applications. Often, developers of such applications want to make them
-    behave more ‘human-like’, and inject humorous responses into human—computer
-    conversation. However, sense of humor and appropriateness of a humorous
-    response are highly subjective and context-dependent. The current study aims
-    at a large-scale evaluation of humorous dialogs.
-</p>
-
-<p>
-    Following this, you will be shown 30 dialog jokes, i.e. jokes consisting of a
-    question (Q) and an answer (A). You are asked to rate each joke on a 4-point
-    scale: 😞 not funny at all (1), 😔 can be better (2), 😊 funny (3), 😆
-    hilarious
-    (4). Please note that the jokes were collected from the Web with minimum
-    filtering, so they may be rude or contain obscene language. Towards the end
-    of the experiment, you will also be asked to answer some questions about
-    yourself. The whole duration of the experiment should be around 10 minutes.
-</p>
-<p>
-    This experiment was approved by URFU's Social Sciences Research Board. Your
-    participation in the experiment is completely voluntary and you are free to
-    withdraw from the experiment at any time. Your data will be treated
-    confidentially and you are also free to request your data to be removed. We
-    do not get access to your personal details. If you have any questions
-    regarding the study, please feel free to contact Dr. Pavel Braslavski from
-    the URFU (Pavel.Braslavsky@urfu.ru).</p>
-
-<p>
-    By clicking the 'Next' button below you accept the conditions of the
-    experiment and agree to participate.
-    Please do not close your browser before completing the questionnaire —
-    otherwise the answers will not be saved.
-</p>
-{% else %}
-
-<p>
-    Following this, you will be shown 30 dialog jokes, i.e. jokes consisting of a
-    question (Q) and an answer (A). You are asked to rate each joke on a 4-point
-    scale: ☹ not funny at all (1), • can be better (2), ☺ funny (3), 😃 hilarious
-    (4). Towards the end of the experiment, you will also be asked to answer some
-    questions about yourself. The whole duration of the experiment should be
-    around 10 minutes.
-</p>
-{% endif %}
 {% next_button %}
 {% endblock %}

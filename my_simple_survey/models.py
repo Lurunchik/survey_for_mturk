@@ -1,4 +1,5 @@
 import random
+from collections import defaultdict
 
 from otree.api import (
     models, widgets, BaseConstants, BaseSubsession, BaseGroup, BasePlayer
@@ -18,6 +19,23 @@ class Constants(BaseConstants):
     name_in_url = 'humor_evaluation'
     players_per_group = None
     num_rounds = 1
+    instructions_template = 'my_simple_survey/Instructions.html'
+    jokes_avarage_evaluation = {
+        1: {0: 0.168492844365, 1: 0.258161896243, 2: 0.332737030411,
+            3: 0.24060822898},
+        2: {0: 0.158314669653, 1: 0.245847331094, 2: 0.349570735349,
+            3: 0.246267263904},
+        3: {0: 0.314421844971, 1: 0.303090967329, 2: 0.264533952594,
+            3: 0.117953235106},
+        4: {0: 0.0797783354245, 1: 0.127770807194, 2: 0.311062317022,
+            3: 0.48138854036},
+        5: {0: 0.123842343313, 1: 0.191794098643, 2: 0.339004953694,
+            3: 0.345358604351},
+        6: {0: 0.0753479811342, 1: 0.163464856781, 2: 0.398596571954,
+            3: 0.36259059013},
+        7: {0: 0.208615948671, 1: 0.270210815765, 2: 0.327314390467,
+            3: 0.193858845096}
+    }
 
 
 class Subsession(BaseSubsession):
@@ -26,7 +44,6 @@ class Subsession(BaseSubsession):
 
 class Group(BaseGroup):
     pass
-
 
 
 class Player(BasePlayer):
@@ -104,3 +121,15 @@ class Player(BasePlayer):
     def secret_code(self):
         self.code = random.randint(1, 1000000)
         return self.code
+
+    def __evaluate_user(self):
+        user_labels = [self.joke_1, self.joke_2, self.joke_3, self.joke_4,
+                       self.joke_5, self.joke_6, self.joke_7]
+        eval_dict = defaultdict(int)
+        for i, label in enumerate(user_labels, start=1):
+            eval_dict[label] += Constants.jokes_avarage_evaluation[i][label]
+
+        return sum(eval_dict.values()) / 7
+
+    def result(self):
+        return round(self.__evaluate_user()*100)
