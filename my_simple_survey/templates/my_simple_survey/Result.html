@@ -20,9 +20,21 @@ What sense of Humor do YOU have? - Test results
                 Don't let little things get you down, you're sweet, cute, loyal and basically like a fluffy bunny.</p>
         </blockquote>
 
-    {% elif  player.result == 1 %}    <p>TEST</p>
+    {% elif  player.result_type == 1 %}
+        <blockquote class="blockquote">
+    <p class="mb-1">Great Job! Your sense of Humor is: <strong>Just right!</strong></p>
+        <p class=mb-0">You're friendly and funny, interesting and able to smile genuinely. <br>
+            You tend to give great advice, but you shouldn't get offended too easily.</p>
+        </blockquote>
 
-        {% elif  player.result == 2 %}    <p>TEST</p>
+        {% elif  player.result_type == 2 %}
+    <blockquote class="blockquote">
+    <p class="mb-1">Great Job! Your sense of Humor is: <strong>Extreme!</strong></p>
+        <p class=mb-0">You tend to be bouncy, fun and very optimistic, a good friend and a huge laugh! <br>
+            You can always make someone smile, but CALM DOWN! You're too hyper! <br>
+            Sometimes you go a bit too far too impress people or yourself.
+            You don't need humor ALL the time</p>
+        </blockquote>
 
 
     {% endif %}
