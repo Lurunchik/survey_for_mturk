@@ -159,14 +159,38 @@ class Player(BasePlayer):
                  self.joke_5, self.joke_6, self.joke_7]]
 
     def __evaluate_user(self):
-        eval_dict = defaultdict(int)
+        laugh_more_often_than = defaultdict(int)
+        laugh_rarer_than = defaultdict(int)
         for i, label in enumerate(self.user_labels(), start=1):
-            eval_dict[label] += Constants.jokes_avarage_evaluation[i][label]
+            laugh_more_often_than[label] += sum(
+                Constants.jokes_avarage_evaluation[i][l]
+                for l in range(0, label)
+            )
+            laugh_rarer_than[label] += sum(
+                Constants.jokes_avarage_evaluation[i][l]
+                for l in range(label + 1, 4)
+            )
 
-        return sum(eval_dict.values()) / 7
+        def norm(x):
+            return sum(x.values()) / 7
+
+        return norm(laugh_more_often_than), norm(laugh_rarer_than)
 
     def result(self):
-        return round(self.__evaluate_user() * 100)
+        def percent(x):
+            return round(x * 100)
+
+        often_than, rarer_than = self.__evaluate_user()
+        res = {
+            HumorTypes.DID_NOT_GET_IT:
+                """Make you laugh more difficult than {}% other participants
+                """.format(percent(rarer_than))
+        }.get(
+            self._user_type(),
+            """You laugh more often than {}% other participants""".format(
+                percent(often_than)))
+
+        return res
 
     def __get_most_diff_joke(self):
         if not self.most_diff_joke:
@@ -212,24 +236,6 @@ class Player(BasePlayer):
         :return:
         '''
         return int(self._user_type())
-        return {
-            HumorTypes.AVERAGE:
-                """Great Job!
-                    Your sense of Humor is:
-
-Just right!
-
-You're friendly and funny, interesting and able to smile genuinely. You tend to give great advice, but you shouldn't get offended too easily.""",
-            HumorTypes.DID_NOT_GET_IT: """
-            
-            """,
-            HumorTypes.HIGH_FUNNY: """
-            Great Job!
-            Your sense of Humor is:
-
-Extreme! 
-You tend to be bouncy, fun and very optimistic, a good friend and a huge laugh! You can always make someone smile, but CALM DOWN! You're too hyper! Sometimes you go a bit too far too impress people or yourself. You don't need humor ALL the time. Profile D"""
-        }.get(self._user_type())
 
     def has_chart(self):
         joke = self.__get_most_diff_joke()
