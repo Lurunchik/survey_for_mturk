@@ -57,6 +57,10 @@ class Constants(BaseConstants):
                        key=operator.itemgetter(1))[0]
                    for i, v in Constants.jokes_avarage_evaluation.items())
 
+    @staticmethod
+    def jester_jokes_by_id():
+        return {i: j for i, j in enumerate(JOKES[0:7], start=1)}
+
 
 class Subsession(BaseSubsession):
     pass
@@ -73,6 +77,7 @@ class HumorTypes(enum.IntEnum):
 
 
 class Player(BasePlayer):
+    most_diff_joke = None
     gender = models.PositiveIntegerField(
         choices=[
             [1, 'Male'],
@@ -149,8 +154,9 @@ class Player(BasePlayer):
         return self.code
 
     def user_labels(self):
-        return [self.joke_1, self.joke_2, self.joke_3, self.joke_4,
-                self.joke_5, self.joke_6, self.joke_7]
+        return [x - 1 for x in
+                [self.joke_1, self.joke_2, self.joke_3, self.joke_4,
+                 self.joke_5, self.joke_6, self.joke_7]]
 
     def __evaluate_user(self):
         eval_dict = defaultdict(int)
@@ -162,23 +168,32 @@ class Player(BasePlayer):
     def result(self):
         return round(self.__evaluate_user() * 100)
 
-    def __get_diff_with_avg(self):
-        max_diff = defaultdict(int)
-        diff_jokes = defaultdict(dict)
+    def __get_most_diff_joke(self):
+        if not self.most_diff_joke:
+            max_diff = defaultdict(int)
+            diff_jokes = defaultdict(dict)
 
-        for i, label in enumerate(self.user_labels(), start=1):
-            max_bath = max(Constants.jokes_avarage_evaluation[i].items(),
-                           key=operator.itemgetter(1))
-            if max_bath[1] != label:
-                diff = max_bath[1] - Constants.jokes_avarage_evaluation[i][label]
-                if diff > max_diff[label]:
-                    diff_jokes[label] = {
-                        'label': label,
-                        'joke_id': i,
-                        'majority_label': max_bath[0],
-                        'diff': round(diff * 100)}
-                    max_diff[label] = diff
-        return diff_jokes, round(max(max_diff.values()) * 100)
+            for i, label in enumerate(self.user_labels(), start=1):
+                max_bath = max(Constants.jokes_avarage_evaluation[i].items(),
+                               key=operator.itemgetter(1))
+                if max_bath[1] != label:
+                    diff = max_bath[1] - Constants.jokes_avarage_evaluation[i][
+                        label]
+                    if diff > max_diff[label]:
+                        diff_jokes[label] = {
+                            'label': label,
+                            'id': i,
+                            'majority_label': max_bath[0],
+                            'diff': round(diff * 100)}
+                        max_diff[label] = diff
+            max_diff = round(max(max_diff.values()) * 100)
+            self.most_diff_joke = next(
+                v for v in diff_jokes.values() if v['diff'] == max_diff)
+        return self.most_diff_joke
+
+    def diff_joke_text(self):
+        joke = Constants.jester_jokes_by_id()[self.__get_most_diff_joke()['id']]
+        return joke
 
     def _user_type(self):
         user_score = sum(self.user_labels())
@@ -221,38 +236,42 @@ You tend to be bouncy, fun and very optimistic, a good friend and a huge laugh! 
         }.get(self._user_type())
 
     def has_chart(self):
-        diff, max_diff = self.__get_diff_with_avg()
-        return diff and max_diff > 3
+        joke = self.__get_most_diff_joke()
+        return joke and joke['diff'] > 3
 
     def chart(self):
-        label_by_pic = {'😞': 0, '😔': 1, '😊': 2, '😆': 3}
+        not_funny = 'not funny at all'
+        can_be_better = 'can be better'
+        funny = 'funny'
+        hilarious = 'hilarious'
+        label_by_pic = {not_funny: 0, can_be_better: 1, funny: 2, hilarious: 3}
         template = [{
             'name': 'Marks',
             'colorByPoint': True,
             'data': [{
-                'name': '😞',
+                'name': not_funny,
                 'y': 0,
             }, {
-                'name': '😔',
+                'name': can_be_better,
                 'y': 0,
             }, {
-                'name': '😊',
+                'name': funny,
                 'y': 0,
             }, {
-                'name': '😆',
+                'name': hilarious,
                 'y': 0
             }]
         }]
-        diff, max_diff = self.__get_diff_with_avg()
 
-        joke = next(v for v in diff.values() if v['diff'] == max_diff)
+        joke = self.__get_most_diff_joke()
 
-        joke_scores = Constants.jokes_avarage_evaluation[joke['joke_id']]
+        joke_scores = Constants.jokes_avarage_evaluation[joke['id']]
         for data in template[0]['data']:
             data['y'] = joke_scores[label_by_pic[data['name']]]
             if joke['label'] == label_by_pic[data['name']]:
                 data['sliced'] = True
                 data['selected'] = True
-                data['name'] += ' - Your answer here!!!'
+                data['name'] += ' ' \
+                                '(Your are here!!!)'
 
         return template

@@ -11,15 +11,25 @@ What sense of Humor do YOU have? - Test results
 
     <h4>We thank you for your time spent taking this survey. Your response has
         been recorded.</h4>
+    <hr>
 
 
-    <h4>{{player.result_text}}
+    <p>{{player.result_text}}
         Your sense of humor matches: <b>{{player.result}}%</b> of our
-        participants</h4>
+        participants
+    </p>
 
     {%if player.has_chart %}
-        <div id="result-container"
-             style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
+    <p>You mostly disagree with other participants in the following joke:
+         <pre><code>
+    <p><strong>Question: </strong>{{player.diff_joke_text.question}}</p>
+    <p><strong>Answer: </strong>{{player.diff_joke_text.answer}}</p>
+
+    <div id="result-container"
+         style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
+    </code></pre>
+
+
     {% endif %}
 </div>
 <p>
@@ -40,7 +50,7 @@ What sense of Humor do YOU have? - Test results
             type: 'pie'
         },
         title: {
-            text: 'Browser market shares January, 2015 to May, 2015'
+            text: ''
         },
         tooltip: {
             pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
