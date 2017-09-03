@@ -11,17 +11,32 @@ What sense of Humor do YOU have? - Test results
 
     <h4>We thank you for your time spent taking this survey. Your response has
         been recorded.</h4>
-    <hr>
+
+    {%if player.result_type == 0 %}
+    <blockquote class="blockquote">
+    <p class="mb-1">Great Job! Your sense of Humor is: <strong>You don't get it!</strong></p>
+        <p class=mb-0">It's ok, you'll get the hang of it, but keep trying.<br>
+                A lot of people may make fun of you, but try to stand up for yourself! <br>
+                Don't let little things get you down, you're sweet, cute, loyal and basically like a fluffy bunny.</p>
+        </blockquote>
+
+    {% elif  player.result == 1 %}    <p>TEST</p>
+
+        {% elif  player.result == 2 %}    <p>TEST</p>
 
 
-    <p>{{player.result_text}}
-        Your sense of humor matches: <b>{{player.result}}%</b> of our
-        participants
-    </p>
+    {% endif %}
+
+
+    <h4>Your sense of humor matches: <b>{{player.result}}%</b> of our participants and you mostly disagree with other participants in the following joke:</h4>
+
 
     {%if player.has_chart %}
-    <p>You mostly disagree with other participants in the following joke:
-         <pre><code>
+
+         <pre>
+             <code>
+
+
     <p><strong>Question: </strong>{{player.diff_joke_text.question}}</p>
     <p><strong>Answer: </strong>{{player.diff_joke_text.answer}}</p>
 
@@ -31,7 +46,8 @@ What sense of Humor do YOU have? - Test results
 
 
     {% endif %}
-</div>
+        </div>
+
 <p>
     <b><em>***Keep in mind that this is NOT a medical test!***</em></b>
 </p>

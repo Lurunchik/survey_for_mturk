@@ -73,7 +73,7 @@ class Group(BaseGroup):
 class HumorTypes(enum.IntEnum):
     DID_NOT_GET_IT = 0
     AVERAGE = 1
-    HIGH_FUNNY = 1
+    HIGH_FUNNY = 2
 
 
 class Player(BasePlayer):
@@ -205,12 +205,13 @@ class Player(BasePlayer):
         if diff > 0:
             return HumorTypes.HIGH_FUNNY
 
-    def result_text(self):
+    def result_type(self):
         '''
         min diff: 1
         max_diff: 40
         :return:
         '''
+        return int(self._user_type())
         return {
             HumorTypes.AVERAGE:
                 """Great Job!
@@ -220,18 +221,13 @@ Just right!
 
 You're friendly and funny, interesting and able to smile genuinely. You tend to give great advice, but you shouldn't get offended too easily.""",
             HumorTypes.DID_NOT_GET_IT: """
-            Great Job!
-            Your sense of Humor is:
-you don't get it!
-It's ok, you'll get the hang of it, but keep trying. 
-A lot of people may make fun of you, but try to stand up for yourself! 
-Don't let little things get you down, you're sweet, cute, loyal and basically like a fluffy bunny.
+            
             """,
             HumorTypes.HIGH_FUNNY: """
             Great Job!
             Your sense of Humor is:
 
-Extreme
+Extreme! 
 You tend to be bouncy, fun and very optimistic, a good friend and a huge laugh! You can always make someone smile, but CALM DOWN! You're too hyper! Sometimes you go a bit too far too impress people or yourself. You don't need humor ALL the time. Profile D"""
         }.get(self._user_type())
 
