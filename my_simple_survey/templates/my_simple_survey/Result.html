@@ -14,35 +14,25 @@ What sense of Humor do YOU have? - Test results
 
     {%if player.result_type == 0 %}
     <blockquote class="blockquote">
-    <p class="mb-1">Great Job! Your sense of Humor is: <strong>You don't get it!</strong></p>
-        <p class=mb-0">It's ok, you'll get the hang of it, but keep trying.<br>
-                A lot of people may make fun of you, but try to stand up for yourself! <br>
-                Don't let little things get you down, you're sweet, cute, loyal and basically like a fluffy bunny.</p>
-        </blockquote>
+    <p class="mb-1">Great job! It's hard to make you laugh. Why so serious? :-)
+    </blockquote>
 
     {% elif  player.result_type == 1 %}
-        <blockquote class="blockquote">
-    <p class="mb-1">Great Job! Your sense of Humor is: <strong>Just right!</strong></p>
-        <p class=mb-0">You're friendly and funny, interesting and able to smile genuinely. <br>
-            You tend to give great advice, but you shouldn't get offended too easily.</p>
-        </blockquote>
+    <blockquote class="blockquote">
+    <p class="mb-1">Great job! Your sense of humor is: <strong>just right!</strong></p>
+    </blockquote>
 
         {% elif  player.result_type == 2 %}
     <blockquote class="blockquote">
-    <p class="mb-1">Great Job! Your sense of Humor is: <strong>Extreme!</strong></p>
-        <p class=mb-0">You tend to be bouncy, fun and very optimistic, a good friend and a huge laugh! <br>
-            You can always make someone smile, but CALM DOWN! You're too hyper! <br>
-            Sometimes you go a bit too far too impress people or yourself.
-            You don't need humor ALL the time</p>
-        </blockquote>
+    <p class="mb-1">Great job! Your sense of humor is: <strong>extreme!</strong></p>
+    </blockquote>
 
 
     {% endif %}
 
 
-    <h4>{{player.result}}!!!.</h4>
-    <h4> The most significant difference between your result and the result of the majority is in the following joke:</h4>
-
+    <h4>{{player.result}}</h4>
+    <h4> The joke that makes your difference from the others most salient:</h4>
 
     {%if player.has_chart %}
 
