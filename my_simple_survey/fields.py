@@ -24,5 +24,6 @@ def get_joke_field():
     ],
         min=0,
         max=5,
+
         widget=widgets.RadioSelectHorizontal(),
     )

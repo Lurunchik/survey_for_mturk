@@ -1,0 +1,93 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree_tags %}
+
+{% block title %}
+What sense of Humor do YOU have? - Test results
+{% endblock %}
+
+{% block content %}
+<br>
+<div class="instructions well well-lg">
+
+    <h4>We thank you for your time spent taking this survey. Your response has
+        been recorded.</h4>
+
+    {%if player.result_type == 0 %}
+    <blockquote class="blockquote">
+    <p class="mb-1">Great job! It's hard to make you laugh. Why so serious? :-)
+    </blockquote>
+
+    {% elif  player.result_type == 1 %}
+    <blockquote class="blockquote">
+    <p class="mb-1">Great job! Your sense of humor is: <strong>just right!</strong></p>
+    </blockquote>
+
+        {% elif  player.result_type == 2 %}
+    <blockquote class="blockquote">
+    <p class="mb-1">Great job! Your sense of humor is: <strong>extreme!</strong></p>
+    </blockquote>
+
+
+    {% endif %}
+
+
+    <h4>{{player.result}}</h4>
+    <h4> The joke that makes your difference from the others most salient:</h4>
+
+    {%if player.has_chart %}
+
+         <pre>
+             <code>
+
+
+    <p><strong>Question: </strong>{{player.diff_joke_text.question}}</p>
+    <p><strong>Answer: </strong>{{player.diff_joke_text.answer}}</p>
+
+    <div id="result-container"
+         style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
+    </code></pre>
+
+
+    {% endif %}
+        </div>
+
+<p>
+    <b><em>***Keep in mind that this is NOT a medical test!***</em></b>
+</p>
+
+{% endblock %}
+{% block scripts %}
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+
+<script>
+    Highcharts.chart('result-container', {
+        chart: {
+            plotBackgroundColor: null,
+            plotBorderWidth: null,
+            plotShadow: false,
+            type: 'pie'
+        },
+        title: {
+            text: ''
+        },
+        tooltip: {
+            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+        },
+        plotOptions: {
+            pie: {
+                allowPointSelect: true,
+                cursor: 'pointer',
+                dataLabels: {
+                    enabled: true,
+                    format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                    style: {
+                        color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                    }
+                }
+            }
+        },
+        series:  {{player.chart|json}}
+    });
+</script>
+{% endblock %}
