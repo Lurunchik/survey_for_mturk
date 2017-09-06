@@ -183,12 +183,13 @@ class Player(BasePlayer):
         often_than, rarer_than = self.__evaluate_user()
         res = {
             HumorTypes.DID_NOT_GET_IT:
-                """Make you laugh more difficult than {}% other participants
-                """.format(percent(rarer_than))
+                "Only {}% of the other participants find jokes to be funny "
+                "less often than you.".format(percent(rarer_than))
         }.get(
             self._user_type(),
-            """You laugh more often than {}% other participants""".format(
-                percent(often_than)))
+            "You find jokes to be funny more often than {}% "
+            "of the other participants".format(percent(often_than))
+        )
 
         return res
 
