@@ -12,21 +12,25 @@ What sense of Humor do YOU have? - Test results
     <h4>We thank you for your time spent taking this survey. Your response has
         been recorded.</h4>
 
+    <br>
+
     {%if player.result_type == 0 %}
     <!--<blockquote class="blockquote">-->
-    <p class="mb-1">It's hard to make you laugh. Why so serious? :-)
+    <!--<p class="mb-1">It's hard to make you laugh. Why so serious? :-)-->
     <!--</blockquote>-->
+    <h4>It's hard to make you laugh. Why so serious? :-)</h4>
 
     {% elif  player.result_type == 1 %}
     <!--<blockquote class="blockquote">-->
-    <p class="mb-1">Your sense of humor is: <strong>just right!</strong></p>
+    <!--<p class="mb-1">Your sense of humor is: <strong>just right!</strong></p>-->
     <!--</blockquote>-->
+    <h4>Your sense of humor is: <strong>just right!</strong></h4>
 
     {% elif  player.result_type == 2 %}
     <!--<blockquote class="blockquote">-->
-    <p class="mb-1">Your sense of humor is: <strong>extreme!</strong></p>
+    <!--<p class="mb-1">Your sense of humor is: <strong>extreme!</strong></p>-->
     <!--</blockquote>-->
-
+    <h4>Your sense of humor is: <strong>extreme!</strong></h4>
 
     {% endif %}
 
