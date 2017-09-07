@@ -13,19 +13,19 @@ What sense of Humor do YOU have? - Test results
         been recorded.</h4>
 
     {%if player.result_type == 0 %}
-    <blockquote class="blockquote">
-    <p class="mb-1">Great job! It's hard to make you laugh. Why so serious? :-)
-    </blockquote>
+    <!--<blockquote class="blockquote">-->
+    <p class="mb-1">It's hard to make you laugh. Why so serious? :-)
+    <!--</blockquote>-->
 
     {% elif  player.result_type == 1 %}
-    <blockquote class="blockquote">
-    <p class="mb-1">Great job! Your sense of humor is: <strong>just right!</strong></p>
-    </blockquote>
+    <!--<blockquote class="blockquote">-->
+    <p class="mb-1">Your sense of humor is: <strong>just right!</strong></p>
+    <!--</blockquote>-->
 
-        {% elif  player.result_type == 2 %}
-    <blockquote class="blockquote">
-    <p class="mb-1">Great job! Your sense of humor is: <strong>extreme!</strong></p>
-    </blockquote>
+    {% elif  player.result_type == 2 %}
+    <!--<blockquote class="blockquote">-->
+    <p class="mb-1">Your sense of humor is: <strong>extreme!</strong></p>
+    <!--</blockquote>-->
 
 
     {% endif %}
