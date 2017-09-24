@@ -113,6 +113,7 @@ class Player(BasePlayer):
     dependable = get_agreement_field()
     anxious = get_agreement_field()
     complex = get_agreement_field()
+    reserved = get_agreement_field()
     warm = get_agreement_field()
     disorganized = get_agreement_field()
     calm = get_agreement_field()
