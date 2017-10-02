@@ -105,6 +105,16 @@ class Player(BasePlayer):
             [5, 'Native'],
         ]
     )
+    education = models.PositiveIntegerField(
+        choices=[
+            [1, 'No schooling completed'],
+            [2, 'High School/GED'],
+            [3, 'Some College, no degree'],
+            [4, 'Bachelor\'s Degree'],
+            [5, 'Master\'s Degree'],
+            [6, 'Ph.D. or equivalent'],
+        ]
+    )
     code = models.PositiveIntegerField()
     laugh = get_agreement_field()
     pun = get_agreement_field()
