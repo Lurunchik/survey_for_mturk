@@ -4,7 +4,7 @@ from ._builtin import Page
 
 class GeneralInformation(Page):
     form_model = models.Player
-    form_fields = ['gender', 'age_group', 'english_level']
+    form_fields = ['gender', 'age_group', 'english_level', 'education']
 
 
 class SenseOfHumor(Page):
