@@ -11,7 +11,7 @@ class SenseOfHumor(Page):
     form_model = models.Player
     form_fields = ['laugh', 'pun', 'extraverted', 'critical', 'dependable',
                    'anxious', 'complex', 'warm', 'disorganized', 'calm',
-                   'conventional']
+                   'conventional', 'reserved']
 
 
 class SurveyCode(Page):
