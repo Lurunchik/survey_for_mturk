@@ -74,10 +74,11 @@ class Group(BaseGroup):
 
 class Player(BasePlayer):
     joke_score = models.BooleanField(choices=[
-        [False, '😞 это не шутка'],
-        [True, '😊 это шутка'],
+        [1, '😞 не шутка'],
+        [2, '😔 попытка пошутить'],
+        [3, '😊 шутка'],
     ],
-        min=0,
+        min=1,
         widget=widgets.RadioSelectHorizontal(),
         max=3,
     )
