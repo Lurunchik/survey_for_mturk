@@ -2,10 +2,12 @@ import enum
 import operator
 import random
 from collections import defaultdict
-
+from django import forms
+from django.db.models import Count
 from otree.api import (
     models, widgets, BaseConstants, BaseSubsession, BaseGroup, BasePlayer
 )
+from otree.models.varsmixin import ModelWithVars
 
 from my_simple_survey.data.jokes import JOKES
 from my_simple_survey.fields import get_agreement_field, get_joke_field
@@ -70,222 +72,61 @@ class Group(BaseGroup):
     pass
 
 
-class HumorTypes(enum.IntEnum):
-    DID_NOT_GET_IT = 0
-    AVERAGE = 1
-    HIGH_FUNNY = 2
-
-
 class Player(BasePlayer):
-    most_diff_joke = None
-    gender = models.PositiveIntegerField(
-        choices=[
-            [1, 'Male'],
-            [2, 'Female'],
-            [3, 'Prefer not to disclose'],
-        ],
-        widget=widgets.RadioSelect()
+    joke_score = models.BooleanField(choices=[
+        [False, '😞 это не шутка'],
+        [True, '😊 это шутка'],
+    ],
+        min=0,
+        widget=widgets.RadioSelectHorizontal(),
+        max=3,
     )
-    age_group = models.PositiveIntegerField(
-        choices=[
-            [1, '18-30'],
-            [2, '31-40'],
-            [3, '41-50'],
-            [4, '51-60'],
-            [5, '61+'],
-        ],
-        widget=widgets.RadioSelect()
-    )
-    english_level = models.PositiveIntegerField(
-        choices=[
-            [1, 'Poor'],
-            [2, 'Average'],
-            [3, 'Good'],
-            [4, 'Bilingual'],
-            [5, 'Native'],
-        ]
-    )
-    education = models.PositiveIntegerField(
-        choices=[
-            [1, 'No schooling completed'],
-            [2, 'High School/GED'],
-            [3, 'Some College, no degree'],
-            [4, 'Bachelor\'s Degree'],
-            [5, 'Master\'s Degree'],
-            [6, 'Ph.D. or equivalent'],
-        ]
-    )
-    code = models.PositiveIntegerField()
-    laugh = get_agreement_field()
-    pun = get_agreement_field()
-    extraverted = get_agreement_field()
-    critical = get_agreement_field()
-    dependable = get_agreement_field()
-    anxious = get_agreement_field()
-    complex = get_agreement_field()
-    reserved = get_agreement_field()
-    warm = get_agreement_field()
-    disorganized = get_agreement_field()
-    calm = get_agreement_field()
-    conventional = get_agreement_field()
+    joke_id = models.PositiveIntegerField()
 
-    joke_1 = get_joke_field()
-    joke_2 = get_joke_field()
-    joke_3 = get_joke_field()
-    joke_4 = get_joke_field()
-    joke_5 = get_joke_field()
-    joke_6 = get_joke_field()
-    joke_7 = get_joke_field()
-    joke_8 = get_joke_field()
-    joke_9 = get_joke_field()
-    joke_10 = get_joke_field()
-    joke_11 = get_joke_field()
-    joke_12 = get_joke_field()
-    joke_13 = get_joke_field()
-    joke_14 = get_joke_field()
-    joke_15 = get_joke_field()
-    joke_16 = get_joke_field()
-    joke_17 = get_joke_field()
-    joke_18 = get_joke_field()
-    joke_19 = get_joke_field()
-    joke_20 = get_joke_field()
-    joke_21 = get_joke_field()
-    joke_22 = get_joke_field()
-    joke_23 = get_joke_field()
-    joke_24 = get_joke_field()
-    joke_25 = get_joke_field()
-    joke_26 = get_joke_field()
-    joke_27 = get_joke_field()
-    joke_28 = get_joke_field()
-    joke_29 = get_joke_field()
-    joke_30 = get_joke_field()
+    def joke_text(self):
+        jokes_left = Joke.objects.raw(
+            """
+              select e.id, text from (
+     (select *
+                 from my_simple_survey_joke
+                 where id not in
+                       (select joke
+                        from my_simple_survey_jokescore
+                        where player = {player})
+                ) w left join
 
-    def secret_code(self):
-        self.code = random.randint(1, 1000000)
-        return self.code
-
-    def user_labels(self):
-        return [x - 1 for x in
-                [self.joke_1, self.joke_2, self.joke_3, self.joke_4,
-                 self.joke_5, self.joke_6, self.joke_7]]
-
-    def __evaluate_user(self):
-        laugh_more_often_than = defaultdict(int)
-        laugh_rarer_than = defaultdict(int)
-        for i, label in enumerate(self.user_labels(), start=1):
-            laugh_more_often_than[label] += sum(
-                Constants.jokes_avarage_evaluation[i][l]
-                for l in range(0, label)
-            )
-            laugh_rarer_than[label] += sum(
-                Constants.jokes_avarage_evaluation[i][l]
-                for l in range(label + 1, 4)
-            )
-
-        def norm(x):
-            return sum(x.values()) / 7
-
-        return norm(laugh_more_often_than), norm(laugh_rarer_than)
-
-    def result(self):
-        def percent(x):
-            return round(x * 100)
-
-        often_than, rarer_than = self.__evaluate_user()
-        res = {
-            HumorTypes.DID_NOT_GET_IT:
-                "You find jokes to be funny less often than {}% "
-                "of the other participants.".format(percent(rarer_than))
-        }.get(
-            self._user_type(),
-            "You find jokes to be funny more often than {}% "
-            "of the other participants".format(percent(often_than))
+                                                                        (
+           select
+             joke as id,
+             count(*) as count
+           from my_simple_survey_jokescore
+           group by joke
+         ) q
+      on (q.id == w.id)
+  )e order by count;
+            """.format(player=self.id)
         )
+        joke = jokes_left[0]
 
-        return res
+        self.joke_id = joke.id
+        return joke.text
 
-    def __get_most_diff_joke(self):
-        if not self.most_diff_joke:
-            max_diff = defaultdict(int)
-            diff_jokes = defaultdict(dict)
 
-            for i, label in enumerate(self.user_labels(), start=1):
-                max_bath = max(Constants.jokes_avarage_evaluation[i].items(),
-                               key=operator.itemgetter(1))
-                if max_bath[1] != label:
-                    diff = max_bath[1] - Constants.jokes_avarage_evaluation[i][
-                        label]
-                    if diff > max_diff[label]:
-                        diff_jokes[label] = {
-                            'label': label,
-                            'id': i,
-                            'majority_label': max_bath[0],
-                            'diff': round(diff * 100)}
-                        max_diff[label] = diff
-            max_diff = round(max(max_diff.values()) * 100)
-            self.most_diff_joke = next(
-                v for v in diff_jokes.values() if v['diff'] == max_diff)
-        return self.most_diff_joke
+class Joke(ModelWithVars):
+    class Meta:
+        ordering = ['pk']
+        app_label = 'my_simple_survey'
 
-    def diff_joke_text(self):
-        joke = Constants.jester_jokes_by_id()[self.__get_most_diff_joke()['id']]
-        return joke
+    id = models.PositiveIntegerField(primary_key=True, null=False)
+    text = models.CharField()
 
-    def _user_type(self):
-        user_score = sum(self.user_labels())
-        diff = user_score - Constants.average_score()
-        if abs(diff) < 5:
-            return HumorTypes.AVERAGE
-        if diff < 0:
-            return HumorTypes.DID_NOT_GET_IT
-        if diff > 0:
-            return HumorTypes.HIGH_FUNNY
 
-    def result_type(self):
-        '''
-        min diff: 1
-        max_diff: 40
-        :return:
-        '''
-        return int(self._user_type())
+class JokeScore(ModelWithVars):
+    class Meta:
+        ordering = ['pk']
+        app_label = 'my_simple_survey'
+        unique_together = (("player", "joke"),)
 
-    def has_chart(self):
-        joke = self.__get_most_diff_joke()
-        return joke and joke['diff'] > 3
-
-    def chart(self):
-        not_funny = 'not funny at all'
-        can_be_better = 'can be better'
-        funny = 'funny'
-        hilarious = 'hilarious'
-        label_by_pic = {not_funny: 0, can_be_better: 1, funny: 2, hilarious: 3}
-        template = [{
-            'name': 'Marks',
-            'colorByPoint': True,
-            'data': [{
-                'name': not_funny,
-                'y': 0,
-            }, {
-                'name': can_be_better,
-                'y': 0,
-            }, {
-                'name': funny,
-                'y': 0,
-            }, {
-                'name': hilarious,
-                'y': 0
-            }]
-        }]
-
-        joke = self.__get_most_diff_joke()
-
-        joke_scores = Constants.jokes_avarage_evaluation[joke['id']]
-        for data in template[0]['data']:
-            data['y'] = joke_scores[label_by_pic[data['name']]]
-            if joke['label'] == label_by_pic[data['name']]:
-                data['sliced'] = True
-                data['selected'] = True
-                data['name'] += ' ' \
-                                '(Your are here!!!)'
-
-        return template
+    player = models.PositiveIntegerField(null=False)
+    joke = models.PositiveIntegerField(null=False)
+    score = models.BooleanField(null=False)

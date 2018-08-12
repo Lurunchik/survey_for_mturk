@@ -2,18 +2,20 @@ from . import models
 from ._builtin import Page
 
 
-class GeneralInformation(Page):
-    form_model = models.Player
-    form_fields = ['gender', 'age_group', 'english_level']
-
-
-class SenseOfHumor(Page):
-    form_model = models.Player
-    form_fields = ['laugh', 'pun', 'extraverted', 'critical', 'dependable',
-                   'anxious', 'complex', 'warm', 'disorganized', 'calm',
-                   'conventional']
-
-
-class Results(Page):
+class Preview(Page):
     pass
+
+
+class JokePage(Page):
+    form_model = models.Player
+    form_fields = ['joke_score']
+
+    def _increment_index_in_pages(self):
+        models.JokeScore.objects.create(
+            joke=self.player.joke_id,
+            player=self.player.id,
+            score=self.player.joke_score,
+        )
+
+        super()._increment_index_in_pages()
 

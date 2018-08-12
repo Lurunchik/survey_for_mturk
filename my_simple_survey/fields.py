@@ -17,13 +17,11 @@ def get_agreement_field():
 
 def get_joke_field():
     return models.PositiveIntegerField(choices=[
-        [1, '😞 not funny at all '],
-        [2, '😔 can be better'],
-        [3, '😊 funny'],
-        [4, '😆 hilarious']
+        [1, '😞 это не шутка'],
+        [2, '😞 это попытка пошутить'],
+        [3, '😊 это шутка'],
     ],
-        min=0,
-        max=5,
-
+        min=1,
+        max=3,
         widget=widgets.RadioSelectHorizontal(),
     )

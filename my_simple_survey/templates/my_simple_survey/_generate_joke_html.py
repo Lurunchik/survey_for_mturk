@@ -7,14 +7,11 @@ def chunks(l, n):
         yield l[i:i + n]
 
 
-def get_html(jokes, start_id):
-    return '\n\n'.join(
-        [
-            """<div class="jumbotron  jumbotron-fluid"><p><strong>Question: </strong>""" + j['question'] + """</p>
-<p><strong>Answer: </strong>""" + j['answer'] + """</p>
-{% formfield player.joke_""" + str(i) + """ with label="" %}
+def get_html():
+    return """<div class="jumbotron  jumbotron-fluid"><p>{{ player.joke_text }}</p>
+{% formfield player.joke_score with label="" %}
 <br>
-</div>""" for i, j in enumerate(jokes, start=start_id)])
+</div>"""
 
 
 if __name__ == "__main__":
@@ -27,12 +24,12 @@ if __name__ == "__main__":
             content_block = """<div class="progress">
   <div class="progress-bar progress-bar-striped" role="progressbar" style="width: {percent}%" aria-valuenow="{percent}" aria-valuemin="0" aria-valuemax="100"></div>
 </div>
-<h3>Page {page_num}/{page_max}. Please, evaluate the following jokes: </h3> 
+<h3>Страница №{page_num}. Пожалуйста, оцените, является ли текст ниже шуткой: </h3> 
             {html}""".format(
                 percent=(i * 100) / max_pages,
                 page_num=i,
                 page_max=max_pages,
-                html=get_html(t, start_page_num))
+                html=get_html())
             html = """{% extends "global/Page.html" %}
                 {% load staticfiles otree_tags %}
 

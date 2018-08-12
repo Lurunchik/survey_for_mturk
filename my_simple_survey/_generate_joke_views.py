@@ -11,19 +11,12 @@ JokeClass = namedtuple('JokeClass', ['name', 'body'])
 #  но эта джанговская пежня не работает иначе
 
 def _get_joke_class_code(j_id):
-    max_joke_id_on_page = min(j_id + JOKES_COUNT_ON_PAGE, len(JOKES) + 1)
-
-    form_fields = ["'joke_{}'".format(i) for i in
-                   range(j_id, max_joke_id_on_page)]
-
     return JokeClass(
         name="Joke{}".format(j_id),
         body="""
-class Joke{id}(Page):
-    form_model = models.Player
-    form_fields = [{fields}]
+class Joke{id}(JokePage):
     template_name = 'my_simple_survey/Joke{id}.html'
-""".format(id=j_id, fields=', '.join(form_fields)))
+""".format(id=j_id))
 
 
 def get_jokes_files():
@@ -36,6 +29,8 @@ if __name__ == "__main__":
     joke_ids = sorted(int(re.search(r'\d+', f).group())
                       for f in get_jokes_files())
 
+    assert len(joke_ids) == len(JOKES), 'Joke counts do not match, you might want to run HTML generation first'
+
     with open('_view_template', 'r') as t, open('views.py', 'w') as f:
         j_classes = [_get_joke_class_code(j_id) for j_id in joke_ids]
         file = t.read()
@@ -43,10 +38,9 @@ if __name__ == "__main__":
 
         page_sequence = """
 page_sequence = [
-    GeneralInformation,
+    Preview,
     {},
-    SenseOfHumor
 ]
-""".format(', '.join(j.name for j in j_classes))
+""".format(',\n    '.join(j.name for j in j_classes))
         file += "\n" + page_sequence
         f.write(file)
