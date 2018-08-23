@@ -103,7 +103,7 @@ class Player(BasePlayer):
            from my_simple_survey_jokescore
            group by joke
          ) q
-      on (q.id == w.id)
+      on (q.id = w.id)
   )e order by count;
             """.format(player=self.id)
         )
