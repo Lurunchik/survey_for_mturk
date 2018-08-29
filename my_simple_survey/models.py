@@ -73,7 +73,7 @@ class Group(BaseGroup):
 
 
 class Player(BasePlayer):
-    joke_score = models.BooleanField(choices=[
+    joke_score = models.PositiveIntegerField(choices=[
         [1, '😞 не шутка'],
         [2, '😔 попытка пошутить'],
         [3, '😊 шутка'],
@@ -130,4 +130,4 @@ class JokeScore(ModelWithVars):
 
     player = models.PositiveIntegerField(null=False)
     joke = models.PositiveIntegerField(null=False)
-    score = models.BooleanField(null=False)
+    score = models.PositiveIntegerField(null=False)
