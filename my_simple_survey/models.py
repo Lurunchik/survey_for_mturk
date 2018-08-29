@@ -87,23 +87,23 @@ class Player(BasePlayer):
     def joke_text(self):
         jokes_left = Joke.objects.raw(
             """
-              select e.id, text from (
+              select e.jid, text from (
      (select *
-                 from my_simple_survey_joke
-                 where id not in
-                       (select joke
-                        from my_simple_survey_jokescore
-                        where player = {player})
-                ) w left join
+         from my_simple_survey_joke
+         where id not in
+               (select joke
+                from my_simple_survey_jokescore
+                where player = {player})
+        ) w left join
 
-                                                                        (
+        (
            select
-             joke as id,
+             joke as jid,
              count(*) as count
            from my_simple_survey_jokescore
            group by joke
          ) q
-      on (q.id = w.id)
+      on (q.jid = w.id)
   )e order by count;
             """.format(player=self.id)
         )
