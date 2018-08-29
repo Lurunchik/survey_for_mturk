@@ -87,7 +87,7 @@ class Player(BasePlayer):
     def joke_text(self):
         jokes_left = Joke.objects.raw(
             """
-              select e.jid, text from (
+              select e.id, text from (
      (select *
          from my_simple_survey_joke
          where id not in
