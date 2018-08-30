@@ -2,10 +2,8 @@
                 {% load staticfiles otree_tags %}
 
                 {% block content %}
-                <div class="progress">
-  <div class="progress-bar progress-bar-striped" role="progressbar" style="width: 96.20189905047476%" aria-valuenow="96.20189905047476" aria-valuemin="0" aria-valuemax="100"></div>
-</div>
-<h3>Страница №1925. Пожалуйста, оцените, является ли текст ниже шуткой: </h3> 
+                
+<h3>Пожалуйста, оцените, является ли текст ниже шуткой: </h3> 
             <div class="jumbotron  jumbotron-fluid"><p>{{ player.joke_text }}</p>
 {% formfield player.joke_score with label="" %}
 <br>
