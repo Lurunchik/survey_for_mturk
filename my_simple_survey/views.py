@@ -1,14 +1,39 @@
+import re
+
+from otree.api import widgets
+
+from my_simple_survey.models import joke_score_obj
 from . import models
 from ._builtin import Page
+
+from django.template.response import TemplateResponse
 
 
 class Preview(Page):
     pass
 
 
+class NoFuckingCheckedTemplateResponse(TemplateResponse):
+    @property
+    def rendered_content(self):
+        result = super().rendered_content
+        print(result)
+        return re.sub('checked', '', result)
+
+
 class JokePage(Page):
     form_model = models.Player
     form_fields = ['joke_score']
+
+    def render_to_response(self, context):
+        """
+        Given a context dictionary, returns an HTTP response.
+        """
+        return NoFuckingCheckedTemplateResponse(
+            request=self.request,
+            template=self.get_template_names(),
+            context=context
+        )
 
     def _increment_index_in_pages(self):
         models.JokeScore.objects.create(
