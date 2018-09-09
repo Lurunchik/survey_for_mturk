@@ -1,4 +1,6 @@
 import os
+import random
+
 import django
 
 from my_simple_survey.data.jokes import JOKES
@@ -8,5 +10,7 @@ django.setup()
 
 from my_simple_survey.models import Joke
 
-for i, joke in enumerate(JOKES, start=1):
+jokes = list(JOKES)
+random.shuffle(jokes)
+for i, joke in enumerate(jokes, start=1):
     Joke.objects.create(id=i, text=joke)

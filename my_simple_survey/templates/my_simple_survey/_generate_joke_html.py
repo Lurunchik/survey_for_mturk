@@ -21,14 +21,9 @@ if __name__ == "__main__":
     max_pages = len(joke_chunks) + 1
     for i, t in enumerate(joke_chunks, start=1):
         with open('Joke{}.html'.format(start_page_num), 'wb') as f:
-            content_block = """<div class="progress">
-  <div class="progress-bar progress-bar-striped" role="progressbar" style="width: {percent}%" aria-valuenow="{percent}" aria-valuemin="0" aria-valuemax="100"></div>
-</div>
-<h3>Страница №{page_num}. Пожалуйста, оцените, является ли текст ниже шуткой: </h3> 
+            content_block = """
+<h3>Пожалуйста, оцените, является ли текст ниже шуткой: </h3> 
             {html}""".format(
-                percent=(i * 100) / max_pages,
-                page_num=i,
-                page_max=max_pages,
                 html=get_html())
             html = """{% extends "global/Page.html" %}
                 {% load staticfiles otree_tags %}
