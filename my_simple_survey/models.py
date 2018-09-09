@@ -1,4 +1,5 @@
 import enum
+import itertools
 import operator
 import random
 from collections import defaultdict
@@ -87,7 +88,7 @@ class Player(BasePlayer):
     def joke_text(self):
         jokes_left = Joke.objects.raw(
             """
-              select e.id, text from (
+              select e.id, text, count from (
      (select *
          from my_simple_survey_joke
          where id not in
@@ -107,10 +108,12 @@ class Player(BasePlayer):
   )e order by count;
             """.format(player=self.id)
         )
-        joke = jokes_left[0]
+        for count, joke_group in itertools.groupby(jokes_left, key=lambda x: x.count):
+            joke_group = list(joke_group)
+            joke = random.choice(joke_group)
 
-        self.joke_id = joke.id
-        return joke.text
+            self.joke_id = joke.id
+            return joke.text
 
 
 class Joke(ModelWithVars):
