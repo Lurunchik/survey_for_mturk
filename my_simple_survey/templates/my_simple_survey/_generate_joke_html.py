@@ -17,7 +17,7 @@ def get_html():
 if __name__ == "__main__":
 
     start_page_num = 1
-    joke_chunks = list(chunks(JOKES, JOKES_COUNT_ON_PAGE))
+    joke_chunks = list(chunks(list(JOKES), JOKES_COUNT_ON_PAGE))
     max_pages = len(joke_chunks) + 1
     for i, t in enumerate(joke_chunks, start=1):
         with open('Joke{}.html'.format(start_page_num), 'wb') as f:
