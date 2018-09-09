@@ -118,6 +118,7 @@ class Joke(ModelWithVars):
 
     id = models.PositiveIntegerField(primary_key=True, null=False)
     text = models.CharField()
+    is_joke = models.BooleanField()
 
 
 class JokeScore(ModelWithVars):
