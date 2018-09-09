@@ -1,16 +1,11 @@
-import enum
 import operator
-import random
-from collections import defaultdict
-from django import forms
-from django.db.models import Count
+
 from otree.api import (
     models, widgets, BaseConstants, BaseSubsession, BaseGroup, BasePlayer
 )
 from otree.models.varsmixin import ModelWithVars
 
 from my_simple_survey.data.jokes import JOKES
-from my_simple_survey.fields import get_agreement_field, get_joke_field
 
 author = 'lurunchik_chomechome'
 
@@ -87,7 +82,7 @@ class Player(BasePlayer):
     def joke_text(self):
         jokes_left = Joke.objects.raw(
             """
-              select e.id, text from (
+              select e.id as id, text from (
      (select *
          from my_simple_survey_joke
          where id not in

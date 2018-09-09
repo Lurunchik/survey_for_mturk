@@ -1,8 +1,5 @@
 import re
 
-from otree.api import widgets
-
-from my_simple_survey.models import joke_score_obj
 from . import models
 from ._builtin import Page
 
@@ -17,7 +14,6 @@ class NoFuckingCheckedTemplateResponse(TemplateResponse):
     @property
     def rendered_content(self):
         result = super().rendered_content
-        print(result)
         return re.sub('checked', '', result)
 
 
