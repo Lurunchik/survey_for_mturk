@@ -14,7 +14,7 @@ joke_scores = JokeScore.objects.all()
 
 joke_scores_aggregated = collections.defaultdict(list)
 for score in joke_scores:
-    joke_scores_aggregated[score.joke].append(score.score)
+    joke_scores_aggregated[score.joke].append((score.score, score.player))
 
 for joke in jokes:
     if joke.id in joke_scores_aggregated:
