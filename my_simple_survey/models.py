@@ -103,7 +103,8 @@ class Player(BasePlayer):
   )e order by count;
             """.format(player=self.id)
         )
-        for count, joke_group in itertools.groupby(jokes_left, key=lambda x: x.count):
+        for count, joke_group in itertools.groupby(sorted(jokes_left, key=lambda x: x.count or 0),
+                                                   key=lambda x: x.count):
             joke_group = list(joke_group)
             joke = random.choice(joke_group)
 
