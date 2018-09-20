@@ -16,8 +16,27 @@ joke_scores_aggregated = collections.defaultdict(list)
 for score in joke_scores:
     joke_scores_aggregated[score.joke].append((score.score, score.player))
 
+print(len(joke_scores_aggregated))
+
+true_joke_count = 0
+true_non_joke_count = 0
+total_joke_count = 0
+total_non_joke_count = 0
 for joke in jokes:
     if joke.id in joke_scores_aggregated:
-        print(joke.text)
-        print(joke.is_joke)
-        print(joke_scores_aggregated[joke.id])
+        scores = joke_scores_aggregated[joke.id]
+        score = sum(scores) / len(scores)
+        if joke.is_joke:
+            total_joke_count += 1
+            if score >= 2:
+                true_joke_count += 1
+        else:
+            total_non_joke_count += 1
+            if score < 1:
+                true_non_joke_count += 1
+
+print(f'Jokes assessed: {total_joke_count}, true: {true_joke_count}\n'
+      f'Percentage: {true_joke_count / total_joke_count}')
+
+print(f'Non-jokes assessed: {total_non_joke_count}, true: {true_non_joke_count}\n'
+      f'Percentage: {true_non_joke_count / total_non_joke_count}')
