@@ -24,8 +24,14 @@ total_joke_count = 0
 total_non_joke_count = 0
 for joke in jokes:
     if joke.id in joke_scores_aggregated:
-        scores = joke_scores_aggregated[joke.id]
-        score = sum(scores) / len(scores)
+        scores = sorted(joke_scores_aggregated[joke.id])
+        median = len(scores) // 2
+
+        if len(scores) % 2 == 0:
+            score = (scores[median] + scores[median - 1]) / 2
+        else:
+            score = scores[median]
+
         if joke.is_joke:
             total_joke_count += 1
             if score >= 2:
