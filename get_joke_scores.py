@@ -32,7 +32,7 @@ for joke in jokes:
                 true_joke_count += 1
         else:
             total_non_joke_count += 1
-            if score < 1:
+            if score < 2:
                 true_non_joke_count += 1
 
 print(f'Jokes assessed: {total_joke_count}, true: {true_joke_count}\n'
