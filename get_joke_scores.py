@@ -22,9 +22,13 @@ true_joke_count = 0
 true_non_joke_count = 0
 total_joke_count = 0
 total_non_joke_count = 0
+total_multiple_scores = 0
 for joke in jokes:
     if joke.id in joke_scores_aggregated:
         scores = sorted(joke_scores_aggregated[joke.id])
+        if len(scores) > 1:
+            total_multiple_scores += 1
+
         median = len(scores) // 2
 
         if len(scores) % 2 == 0:
@@ -46,3 +50,5 @@ print(f'Jokes assessed: {total_joke_count}, true: {true_joke_count}\n'
 
 print(f'Non-jokes assessed: {total_non_joke_count}, true: {true_non_joke_count}\n'
       f'Percentage: {true_non_joke_count / total_non_joke_count}')
+
+print(f'Multiple scores: {total_multiple_scores}')
