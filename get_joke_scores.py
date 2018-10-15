@@ -51,5 +51,5 @@ print(f'Jokes assessed: {total_joke_count}, true: {true_joke_count}\n'
 print(f'Non-jokes assessed: {total_non_joke_count}, true: {true_non_joke_count}\n'
       f'Percentage: {true_non_joke_count / total_non_joke_count}')
 
-for score, count in score_counts:
+for score, count in score_counts.items():
     print(f'{score} scores: {count}')
