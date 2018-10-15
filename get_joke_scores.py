@@ -27,7 +27,9 @@ score_counts = collections.defaultdict(int)
 for joke in jokes:
     if joke.id in joke_scores_aggregated:
         scores = sorted(joke_scores_aggregated[joke.id])
-        score_counts[len(scores)] += 1
+
+        for score in range(len(scores)):
+            score_counts[score + 1] += 1
 
         median = len(scores) // 2
 
